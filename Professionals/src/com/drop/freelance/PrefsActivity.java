@@ -1,7 +1,7 @@
 package com.drop.freelance;
 
 
-import com.drop.cloud.R;
+
 
 import android.os.Bundle;
 import android.preference.PreferenceActivity;

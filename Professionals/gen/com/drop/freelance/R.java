@@ -39,17 +39,15 @@ public final class R {
         public static final int x=0x7f020013;
     }
     public static final class id {
-        public static final int Spinner02=0x7f080016;
         public static final int android_search_box=0x7f080008;
         public static final int b1=0x7f080007;
         public static final int button1=0x7f080013;
         public static final int button2=0x7f080011;
         public static final int button3=0x7f080014;
         public static final int button4=0x7f080012;
-        public static final int buynotbuy=0x7f08001d;
-        public static final int call=0x7f08001c;
-        public static final int client=0x7f08001b;
-        public static final int defsettings=0x7f08001f;
+        public static final int buynotbuy=0x7f08001a;
+        public static final int call=0x7f080019;
+        public static final int defsettings=0x7f08001c;
         public static final int e1=0x7f080000;
         public static final int e2=0x7f080001;
         public static final int e3=0x7f080002;
@@ -62,17 +60,15 @@ public final class R {
         public static final int editText3=0x7f08000f;
         public static final int editText4=0x7f08000e;
         public static final int editText5=0x7f080010;
-        public static final int equip=0x7f080020;
         public static final int equip1=0x7f080015;
         public static final int flag=0x7f080009;
-        public static final int ic_loadlist=0x7f08001e;
-        public static final int lane=0x7f080021;
+        public static final int ic_loadlist=0x7f08001b;
+        public static final int lane=0x7f08001d;
         public static final int mahut=0x7f08000a;
-        public static final int menu_settings=0x7f08001a;
+        public static final int menu_settings=0x7f080018;
         public static final int name=0x7f08000b;
-        public static final int textView1=0x7f080019;
-        public static final int textView2=0x7f080017;
-        public static final int textView3=0x7f080018;
+        public static final int textView1=0x7f080017;
+        public static final int textView2=0x7f080016;
     }
     public static final class layout {
         public static final int acc=0x7f030000;
@@ -98,7 +94,6 @@ public final class R {
         public static final int confirm=0x7f060008;
         public static final int delete_alert=0x7f06000a;
         public static final int edit_note=0x7f060009;
-        public static final int hello_world=0x7f060001;
         public static final int menu_delete=0x7f060005;
         public static final int menu_insert=0x7f060004;
         public static final int menu_refresh=0x7f06000b;
@@ -106,6 +101,7 @@ public final class R {
         public static final int no_notes=0x7f060003;
         public static final int search_hint=0x7f06000c;
         public static final int title=0x7f060006;
+        public static final int updateme=0x7f060001;
     }
     public static final class xml {
         public static final int prefs=0x7f040000;

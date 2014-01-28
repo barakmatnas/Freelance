@@ -1,6 +1,5 @@
 package com.drop.freelance;
 
-import com.drop.cloud.R;
 
 import android.app.Activity;
 import android.content.Intent;

@@ -10,12 +10,10 @@
         android:id="@+id/defsettings"
         android:icon="@drawable/settings"></item>
  
-  <item
-        android:id="@+id/equip"
-        android:icon="@drawable/smallequip"></item>
-      
+       
   <item
         android:id="@+id/lane"
+        android:title="@string/updateme"
         android:icon="@drawable/change"></item>        
            
  

@@ -16,7 +16,6 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
-import com.drop.cloud.R;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -177,8 +176,8 @@ public class MainActivity extends Activity {
 		netFile= Pref.getString("username","");
 		String locale = java.util.Locale.getDefault().getDisplayName();		
 		if (netFile.equals("")){
-			if (!locale.equals(ISRAEL_LOCALE)) netFile="https://dl.dropbox.com/s/fn1ush974bw0n76/client.txt?token_hash=AAFmK3P56Knssy7Rb-NlJiwc6b8iHvw6fbmLou9j0QDYiQ&dl=1";
-			else netFile="https://dl.dropboxusercontent.com/s/t166ueodyr5l4o8/client.txt?token_hash=AAF2_9VlLsm989qs1CHJ8azlVp9Hcp_RKf_4FJJNfSlQbA&dl=1";
+			if (!locale.equals(ISRAEL_LOCALE)) netFile="https://dl.dropboxusercontent.com/s/1bgklxjn25borom/client.txt?dl=1&token_hash=AAGxCS7TfRqiHB0pE-CdAjKczXBsqYkj6ancA3-L9CKj1g";
+			else netFile="https://dl.dropboxusercontent.com/s/1bgklxjn25borom/client.txt?dl=1&token_hash=AAGxCS7TfRqiHB0pE-CdAjKczXBsqYkj6ancA3-L9CKj1g";
 		}
 
 		helper = new ProductOpenHelper(getApplicationContext());
@@ -463,11 +462,7 @@ public class MainActivity extends Activity {
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
 		//adapter.setListindex(info.position);
 		int itemId = item.getItemId();
-		if (itemId == R.id.client) {
-			adapter.delProduct(info.position);
-			adapter.notifyDataSetChanged();
-			return true;
-		} else if (itemId == R.id.buynotbuy) {
+		 if (itemId == R.id.buynotbuy) {
 			int pos=info.position;
 			if ((mVectorClient.get(pos).getmFlag().equals("0"))|(mVectorClient.get(pos).getmFlag().equals("2"))) {
 				mVectorClient.get(pos).setmFlag("1");
@@ -493,7 +488,8 @@ public class MainActivity extends Activity {
 
 
 	public boolean onOptionsItemSelected(MenuItem item) {
-
+		int it = R.id.defsettings;
+		int it1 = R.id.lane;
 		int itemId = item.getItemId();
 		if (itemId == R.id.defsettings) {
 			Intent intent = new Intent(MainActivity.this,
@@ -505,25 +501,16 @@ public class MainActivity extends Activity {
 			else { new ShowDialogAsyncTask(this).execute();
 			adapter.notifyDataSetChanged();
 			}
-		} else if (itemId == R.id.equip) {
-			SingelClient.getinstance().setEquipment(mVectorEquipment);
-			Intent intent2 = new Intent(MainActivity.this,Equipments.class);
-			startActivityForResult(intent2, 6);
-		} else if (itemId == R.id.lane) {
-			if (!isOnline()) { Toast.makeText(getApplicationContext(), NO_INTERNET_RECEPTION,Toast.LENGTH_LONG).show();}
-			else  {    if (lane.size()>3){
-				String[] result1 = new String[lane.size()];
-				lane.toArray(result1);
-				SingelClient.getinstance().setMlane(result1);
+		} 
+		 else if (itemId == R.id.lane) {
+			
 				Intent intent1 = new Intent(MainActivity.this,Lane.class);
 				startActivityForResult(intent1, 5);
 			}    
-			else   { job=asinqJob.doLane;
-			new ShowDialogAsyncTask(this).execute();
-			}
+			
 
-			}
-		}
+			
+		
 		return super.onOptionsItemSelected(item);
 
 	}

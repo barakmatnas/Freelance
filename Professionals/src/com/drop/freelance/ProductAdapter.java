@@ -2,7 +2,7 @@ package com.drop.freelance;
 
 import java.util.Vector;
 
-import com.drop.cloud.R;
+
 
 import android.annotation.SuppressLint;
 import android.content.Context;

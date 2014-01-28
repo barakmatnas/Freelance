@@ -4,33 +4,13 @@
     android:layout_height="fill_parent"
     android1:background="@drawable/blueback" >
 
-    <Spinner
-        android1:id="@+id/Spinner02"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android1:layout_alignParentLeft="true"
-        android1:layout_alignParentTop="true"
-        android1:layout_marginTop="64dp"
-        android:textSize="14pt" />
-
     <TextView
         android1:id="@+id/textView2"
         android1:layout_width="wrap_content"
         android1:layout_height="wrap_content"
-        android1:layout_alignLeft="@+id/textView3"
-        android1:layout_alignRight="@+id/textView3"
-        android1:layout_below="@+id/Spinner02"
-        android1:layout_marginTop="22dp"
-        android1:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <TextView
-        android1:id="@+id/textView3"
-        android1:layout_width="wrap_content"
-        android1:layout_height="wrap_content"
         android1:layout_alignLeft="@+id/button2"
         android1:layout_alignRight="@+id/button1"
-        android1:layout_below="@+id/textView2"
-        android1:layout_marginTop="16dp"
+        android1:layout_marginTop="22dp"
         android1:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
@@ -40,7 +20,7 @@
         android1:layout_alignParentTop="true"
         android1:layout_centerHorizontal="true"
         android1:layout_marginTop="21dp"
-        android1:text="Choosing the schedule today"
+        android1:text="באפשרותך לשלוח לי מייל עם הפרטים הבאים:שם פרטי ומשפחה,טלפון,תמונת פספורט 128*128,הידע המקצועי כולל כל שפות התכנות והידע המקצועי שלך ,קישור לפרופיל הלינקדין שלך ומחיר נדרש לשעת עבודה...עלי כמפתח האפליקציה לציין כי השימוש באפליקציה כרגע חופשי לגמרי ואין אני מתחייב לפרסם כל פנייה,אין אני אחראי לאיכות בעלי המקצוע או לכל נזק שעלול להיגרם עקב כך  "
         android1:textAppearance="?android:attr/textAppearanceLarge" />
 
     <Button
@@ -63,6 +43,8 @@
         android1:layout_alignParentRight="true"
         android1:layout_marginRight="23dp"
         android1:background="@drawable/v"
-        android1:onClick="back" />
+        
+      
+        android1:onClick="send" />
 
 </RelativeLayout>
