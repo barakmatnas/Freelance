@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <resources>
+   <string-array name="fontOptions">
+     <item>20 Pixels</item>
+     <item>28 Pixels</item>
+     <item>36 Pixels</item>
+     </string-array>
+ 
+   <string-array name="fontValues">
+     <item>20</item>
+     <item>28</item>
+     <item>36</item>
+   </string-array>
+   
+   <string-array name="displayOptions">
+     
+     <item>name and Adress</item>
+     <item>name and kind</item>
+     </string-array>
+ 
+   <string-array name="displayValues">
+     <item>2</item>
+     <item>1</item>
+    
+   </string-array>
+   
+   
+   
+ </resources>

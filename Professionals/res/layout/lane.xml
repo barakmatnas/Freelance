@@ -1,0 +1,68 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:android1="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android1:background="@drawable/blueback" >
+
+    <Spinner
+        android1:id="@+id/Spinner02"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android1:layout_alignParentLeft="true"
+        android1:layout_alignParentTop="true"
+        android1:layout_marginTop="64dp"
+        android:textSize="14pt" />
+
+    <TextView
+        android1:id="@+id/textView2"
+        android1:layout_width="wrap_content"
+        android1:layout_height="wrap_content"
+        android1:layout_alignLeft="@+id/textView3"
+        android1:layout_alignRight="@+id/textView3"
+        android1:layout_below="@+id/Spinner02"
+        android1:layout_marginTop="22dp"
+        android1:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android1:id="@+id/textView3"
+        android1:layout_width="wrap_content"
+        android1:layout_height="wrap_content"
+        android1:layout_alignLeft="@+id/button2"
+        android1:layout_alignRight="@+id/button1"
+        android1:layout_below="@+id/textView2"
+        android1:layout_marginTop="16dp"
+        android1:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android1:id="@+id/textView1"
+        android1:layout_width="wrap_content"
+        android1:layout_height="wrap_content"
+        android1:layout_alignParentTop="true"
+        android1:layout_centerHorizontal="true"
+        android1:layout_marginTop="21dp"
+        android1:text="Choosing the schedule today"
+        android1:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android1:id="@+id/button2"
+        android1:layout_width="60dp"
+        android1:layout_height="60dp"
+        android1:layout_alignParentBottom="true"
+        android1:layout_alignParentLeft="true"
+        android1:layout_marginBottom="14dp"
+        android1:layout_marginLeft="26dp"
+        android1:background="@drawable/x"
+        android1:onClick="cancel" />
+
+    <Button
+        android1:id="@+id/button1"
+        android1:layout_width="60dp"
+        android1:layout_height="60dp"
+        android1:layout_alignBaseline="@+id/button2"
+        android1:layout_alignBottom="@+id/button2"
+        android1:layout_alignParentRight="true"
+        android1:layout_marginRight="23dp"
+        android1:background="@drawable/v"
+        android1:onClick="back" />
+
+</RelativeLayout>

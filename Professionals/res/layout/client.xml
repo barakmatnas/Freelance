@@ -1,0 +1,123 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/drops" >
+
+    <EditText
+        android:id="@+id/editText1"
+        android:inputType="text"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/editText2"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/backt"
+        android:ems="10"
+        android:enabled="false"
+        android:textColor="@android:color/black"
+        android:textStyle="bold" />
+
+    <EditText
+        android:inputType="text"
+        android:id="@+id/editText4"
+        android:layout_width="wrap_content"
+        android:layout_height="44dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/editText3"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/backt"
+        android:ems="10"
+        android:enabled="false"
+        android:textColor="@android:color/black"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/editText5"
+        android:layout_width="wrap_content"
+        android:layout_height="44dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/editText4"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/backt"
+        android:ems="10"
+        android:enabled="false"
+        android:inputType="text"
+        android:textColor="@android:color/black"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_alignLeft="@+id/editText4"
+        android:layout_below="@+id/editText1"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/backt"
+        android:ems="10"
+        android:enabled="false"
+        android:gravity="right"
+        android:inputType="phone"
+        android:textColor="@android:color/black"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="80dp"
+        android:layout_height="44dp"
+        android:layout_alignBaseline="@+id/editText4"
+        android:layout_alignBottom="@+id/editText4"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/imgres"
+        android:onClick="waze" />
+
+    <EditText
+        android:inputType="text"
+        android:id="@+id/editText2"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_alignLeft="@+id/editText1"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="22dp"
+        android:background="@drawable/backt"
+        android:ems="10"
+        android:enabled="false"
+        android:textColor="@android:color/black"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/editText4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/button2"
+        android:background="@drawable/call"
+        android:onClick="phone" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="130dp"
+        android:layout_height="65dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/editText5"
+        android:layout_marginRight="41dp"
+        android:background="@drawable/back"
+        android:onClick="back"
+        android:text="@string/back" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="150dp"
+        android:layout_height="80dp"
+        android:layout_alignRight="@+id/button1"
+        android:layout_below="@+id/editText5"
+        android:background="@drawable/equipment"
+        android:onClick="acc"
+        android:text="@string/click_for_more_equipment"
+        android:textColor="@android:color/black"
+        android:textStyle="bold" />
+
+</RelativeLayout>
