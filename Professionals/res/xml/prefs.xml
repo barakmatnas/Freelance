@@ -1,35 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" 
       >
- <PreferenceCategory
-   android:summary="DropBox share link and password information"
-   android:title="Login information" >
-  <EditTextPreference
-     android:key="username"
-     android:summary="Please enter your share link"
-     android:title="DropBox Share Link" />
-  <EditTextPreference
-     android:key="password"
-     android:summary="Enter your password"
-     android:title="Password" />
- </PreferenceCategory>
+ 
  
  <PreferenceCategory
    android:summary="Username "
    android:title="Settings" >
-  <CheckBoxPreference
-     android:key="checkBox"
-     android:summary="On/Off"
-     android:title="Weekly mode" 
-     android:summaryOn="On"
-     android:defaultValue="On"/>
  
-  <ListPreference
-     android:entries="@array/displayOptions"
-     android:entryValues="@array/displayValues"
-     android:key="displaykey"
-     android:summary="Enter your choice"
-     android:title="Display option" />
  <ListPreference
      android:entries="@array/fontOptions"
      android:entryValues="@array/fontValues"
@@ -37,41 +14,6 @@
      android:summary="Enter your choice"
      android:title="Font option" />
  </PreferenceCategory>
-<PreferenceCategory
-   android:summary="מסלולים"
-    android:title="select weekly schedule"
-   >
-  
-  <EditTextPreference
-     android:key="day1"
-     android:summary="Please enter schedule"
-     android:title="Sunday" />
-  <EditTextPreference
-     android:key="day2"
-     android:summary="Please enter schedule"
-     android:title="Monday" />
-  <EditTextPreference
-     android:key="day3"
-     android:summary="Please enter schedule"
-     android:title="Tuesday" />
-  <EditTextPreference
-     android:key="day4"
-     android:summary="Please enter schedule"
-     android:title="Wednesday" />
-  <EditTextPreference
-     android:key="day5"
-     android:summary="Please enter schedule"
-     android:title="Thursday" />
-  <EditTextPreference
-     android:key="day6"
-     android:summary="Please enter schedule"
-     android:title="Friday" />
-  <EditTextPreference
-     android:key="day7"
-     android:summary="Please enter schedule"
-     android:title="Saturday" />
- </PreferenceCategory>    
- 
 
      
      

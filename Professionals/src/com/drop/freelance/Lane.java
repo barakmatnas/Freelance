@@ -31,9 +31,9 @@ public class Lane extends Activity {
 
 		Intent i = new Intent(Intent.ACTION_SEND);
 		i.setType("message/rfc822");
-		i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"recipient@example.com"});
-		i.putExtra(Intent.EXTRA_SUBJECT, "subject of email");
-		i.putExtra(Intent.EXTRA_TEXT   , "body of email");
+		i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"barakmatnas@gmail.com"});
+		i.putExtra(Intent.EXTRA_SUBJECT, "עדכן אותי כפרילנסר");
+		i.putExtra(Intent.EXTRA_TEXT   , "");
 		try {
 		    startActivity(Intent.createChooser(i, "Send mail..."));
 		} catch (android.content.ActivityNotFoundException ex) {

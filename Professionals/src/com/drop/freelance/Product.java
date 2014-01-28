@@ -7,8 +7,16 @@ public class Product {
     private String mStreet;
 	private String mFlag;
     private String mAccessories[];
+    private String mDate;
     
-    
+	public String getmDate() {
+		return mDate;
+	}
+
+	public void setmDate(String mDate) {
+		this.mDate = mDate;
+	}
+
 	public String getmFlag(){
 		return mFlag;
 	}

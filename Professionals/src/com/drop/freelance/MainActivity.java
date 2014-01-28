@@ -52,34 +52,27 @@ public class MainActivity extends Activity {
 	String mDigitalDate;  						// Contains the date of today
 	private EditText mSearchBox;				// Contains the EditText at the top of the main screen
 	public enum asinqJob { doLane,doAsinq,}     // What to do when returning from AsyncTask
-	Boolean equipmentFlag;						// Contains are we on equipmentAdapter or productAdapter
+	// Contains are we on equipmentAdapter or productAdapter
 	String netFile;	    						// Contains the dropBox shareLink, will be saved at SharedPreferences
-	String sqlDate;  	         			    // Contains a variable to filter the two tracks to be displayed, the window will be saved at SharedPreferences 
-	String sqlDate2;							// Contains a variable to filter the two tracks to be displayed, the window will be saved at SharedPreferences
-	String mDate;     							// Contains a variable to compare filter sqlDate
-	String mDate2;		    					// Contains a variable to compare filter sqlDate2
-	String password;							// Contains the a password, will be saved at SharedPreferences
-	Boolean daylyChekBox;						// Contains - Is this a weekly or monthly route?, will be saved at SharedPreferences
-	String changeDate;    					    // Contains - Equal to mDigitalDate when there is an active exchange routes?, will be saved at SharedPreferences
-	int mDayInWeek;								// What day is today?
+	// What day is today?
 	private SQLiteDatabase mDb;					// Contains Database info
 	Cursor cursor;								// Contains mDb info
 	Set<String> lane ;							// Contains route list
 	asinqJob job;			 					// What to do when returning from AsyncTask
 	private Vector<Product> mVectorClient;		// Contains client list
 	private Vector <String > mVectorEquipment;  // Contains Equipment list
-	
+
 	SharedPreferences Pref;	
 	ListView lv; 
 	ProductAdapter adapter;
 	ProductOpenHelper helper;
-	
+
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		lane = new HashSet<String>();
 		job=asinqJob.doAsinq;
-		mDate2="00";
+
 		mVectorClient = new Vector<Product>();
 		mVectorEquipment= new Vector<String>();
 		setContentView(R.layout.activity_main);
@@ -108,94 +101,28 @@ public class MainActivity extends Activity {
 
 		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
-		final Calendar c = Calendar.getInstance();
-
-		int mYear = c.get(Calendar.YEAR);
-		mYear =mYear-2000;
-		equipmentFlag=false;
-		int mMonth = c.get(Calendar.MONTH);
-		mMonth=mMonth+1;
-		int mDay = c.get(Calendar.DAY_OF_MONTH);
-		mDayInWeek = c.get(Calendar.DAY_OF_WEEK);
-		if (mDay<10) {
-			if (mMonth<10) mDate=(" 0"+mDay+".0"+mMonth+"."+mYear);
-			else mDate=(" 0"+mDay+"."+mMonth+"."+mYear);
-		}
-		else  {
-			if (mMonth<10) mDate=(" "+mDay+".0"+mMonth+"."+mYear);
-			else mDate=(" "+mDay+"."+mMonth+"."+mYear);
-
-		}
-		mDigitalDate=mDate;
 
 
 
 		Pref= PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-		sqlDate=Pref.getString("sqlDate","00" );
-		sqlDate2=Pref.getString("sqlDate2","00" );
-		daylyChekBox=Pref.getBoolean("checkBox", true);
+
 		String font=Pref.getString("fontkey","20");
 		SingelClient.getinstance().setmFont(Integer.parseInt(font));
-		String displayType=Pref.getString("displaykey","2" );
-		SingelClient.getinstance().setmFont(Integer.parseInt(font));
-		SingelClient.getinstance().setmDisplayType(Integer.parseInt(displayType));
-		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		changeDate=Pref.getString("changeDate","" );
-		if (!changeDate.equals(mDigitalDate)){         //אם דיגיטל = צינג דייט סימן שיש החלפת מסלולים פעילה ועל כן אין לעדכן מסלולים 
-			if (daylyChekBox){
-				String day1=Pref.getString("day1"," Sunday");
-				String day2=Pref.getString("day2"," Monday");
-				String day3=Pref.getString("day3"," Tuesday");
-				String day4=Pref.getString("day4"," Wednesday");
-				String day5=Pref.getString("day5"," Thursday");
-				String day6=Pref.getString("day6"," Friday");
-				String day7=Pref.getString("day7"," Saturday");
-				if (mDayInWeek==1) mDate =day1;
-				if (mDayInWeek==2) mDate = day2;
-				if (mDayInWeek==3) mDate = day3;
-				if (mDayInWeek==4) mDate =day4;
-				if (mDayInWeek==5) mDate =day5;
-				if (mDayInWeek==6) mDate =day6;
-				if (mDayInWeek==7) mDate =day7;
-			}
 
-		}
-		else{
-			mDate=sqlDate;
-			mDate2=sqlDate2;
-		}
-		if (!daylyChekBox){
-			sqlDate=mDigitalDate;
-			mDate=sqlDate;
-			mDate2="00";
-			sqlDate2="00";
-		}
-
-
-		password=Pref.getString("password","1111111" );
-		netFile= Pref.getString("username","");
 		String locale = java.util.Locale.getDefault().getDisplayName();		
-		if (netFile.equals("")){
-			if (!locale.equals(ISRAEL_LOCALE)) netFile="https://dl.dropboxusercontent.com/s/1bgklxjn25borom/client.txt?dl=1&token_hash=AAGxCS7TfRqiHB0pE-CdAjKczXBsqYkj6ancA3-L9CKj1g";
-			else netFile="https://dl.dropboxusercontent.com/s/1bgklxjn25borom/client.txt?dl=1&token_hash=AAGxCS7TfRqiHB0pE-CdAjKczXBsqYkj6ancA3-L9CKj1g";
-		}
+		netFile="https://dl.dropboxusercontent.com/s/1bgklxjn25borom/client.txt?dl=1&token_hash=AAGxCS7TfRqiHB0pE-CdAjKczXBsqYkj6ancA3-L9CKj1g";
+
 
 		helper = new ProductOpenHelper(getApplicationContext());
 		if (!isOnline())  Toast.makeText(getApplicationContext(), NO_INTERNET_RECEPTION,Toast.LENGTH_LONG).show();
-		if ((mDate.equalsIgnoreCase(sqlDate)) &(mDate2.equalsIgnoreCase(sqlDate2)))
-		{	
-			mDb = helper.getWritableDatabase();
-			cursor = mDb.rawQuery("SELECT * FROM CLIENTS;", null);
 
-			if (cursor.getCount()<1) {  new ShowDialogAsyncTask(this).execute();}
-			else { sqlWay(cursor);}
-		}
-		else{
-			sqlDate=mDate;
-			sqlDate2="00";
+		mDb = helper.getWritableDatabase();
+		cursor = mDb.rawQuery("SELECT * FROM CLIENTS;", null);
 
-			new ShowDialogAsyncTask(this).execute();
-		}
+		if (cursor.getCount()<1) {  new ShowDialogAsyncTask(this).execute();}
+		else { sqlWay(cursor);}
+
+		
 	}////////////////////////////////////////								/////////////ON     CREATE END//////////////////////////////
 
 
@@ -208,7 +135,7 @@ public class MainActivity extends Activity {
 			for (int i = 0; i < cursor.getCount() ; i++) {
 				String zmani=cursor.getString(0);
 				lane.add(zmani);
-				if ((zmani.equalsIgnoreCase(sqlDate)) ||(zmani.equalsIgnoreCase(sqlDate2))){	
+					
 
 					Product Product = new Product();
 					Product.setmName(cursor.getString(1));
@@ -219,7 +146,7 @@ public class MainActivity extends Activity {
 					for (int j=6;j<12;j++){
 						System.out.print("setmAccessories");
 						Product.setmAccessories(cursor.getString(j));
-					}
+					
 					mVectorClient.add(Product);
 					cursor.moveToNext();
 				} //if date
@@ -253,9 +180,9 @@ public class MainActivity extends Activity {
 		}//if (cur==null)
 
 	}//sqlway//////////////////////////////  SQLWAY END  //////////////////
-	
-	
-	
+
+
+
 	private void fillFilteredData(CharSequence s) {				// deals filtering rows using the editText on the top of the screen
 		Cursor mCursor = mDb.rawQuery("SELECT * FROM CLIENTS WHERE name LIKE '%" + s + "%';", null);
 		if (mCursor != null) {
@@ -306,33 +233,17 @@ public class MainActivity extends Activity {
 				BufferedReader reader = new BufferedReader(in);
 				StringTokenizer tokens;
 
-				String sCurrentLine = reader.readLine();
-				tokens = new StringTokenizer(sCurrentLine, ",");
-				String pas =tokens.nextToken();
-				pas =tokens.nextToken();
-
-				if ((!sCurrentLine.equals(null))|(daylyChekBox)){
-					if (!password.equals(pas)){
-						Intent intent = new Intent(MainActivity.this,
-								PrefsActivity.class);
-						startActivityForResult(intent, 0);
-						if (!password.equals(pas)){
-
-							finish();
-						}
-
-					}
-				}
+				String sCurrentLine  ;
+			
 
 
 				while ((sCurrentLine = reader.readLine()) != null) {
 					sCurrentLine = sCurrentLine.trim().replace('"',' ');
 					tokens = new StringTokenizer(sCurrentLine, ",");
-					String today =tokens.nextToken();
+					//String mDate =tokens.nextToken();
 					//mLane.add(today);
-					lane.add(today);
-					if ((today.equalsIgnoreCase(sqlDate)) || (today.equalsIgnoreCase(sqlDate2))){ 
 						Product product = new Product();
+						product.setmDate(tokens.nextToken());
 						product.setmName(tokens.nextToken());
 						product.setmMahut(tokens.nextToken());
 						product.setmPhone(tokens.nextToken());
@@ -348,7 +259,7 @@ public class MainActivity extends Activity {
 							if (!s.equals("no")) mVectorEquipment.add(s) ;//separate vector that for the use of equipment adapter
 
 						}
-						mDb.execSQL("INSERT INTO CLIENTS VALUES ('" + mDate + "','" + product.getmName()
+						mDb.execSQL("INSERT INTO CLIENTS VALUES ('" + product.getmDate() + "','" + product.getmName()
 								+ "','" + product.getmMahut() +"','" + product.getmPhone() +"','" + product.getmStreet() 
 								+"','" + product.getmFlag() +"','" +product.getmAccessories(0) +"','" + product.getmAccessories(1) +
 								"','" + product.getmAccessories(2)+"','" + 
@@ -358,7 +269,7 @@ public class MainActivity extends Activity {
 
 						mVectorClient.add(product);
 
-					}}
+					}
 
 			} 
 			catch (UnknownHostException e) {
@@ -417,12 +328,7 @@ public class MainActivity extends Activity {
 		super.onActivityResult(requestCode, resultCode, data);
 
 		if   (resultCode==Activity.RESULT_OK && requestCode==5){
-			changeDate=mDigitalDate;
-			sqlDate2=data.getStringExtra("name");
-			sqlDate=data.getStringExtra("name2");
-			if (sqlDate2.equals(""))sqlDate2="00";
-			mDate=sqlDate;
-			mDate2=sqlDate2;
+		
 			new ShowDialogAsyncTask(this).execute();
 			adapter.notifyDataSetChanged();
 		}
@@ -435,8 +341,7 @@ public class MainActivity extends Activity {
 			SingelClient.getinstance().setmDisplayType(Integer.parseInt(displayType));
 			SingelClient.getinstance().setmFont(Integer.parseInt(font));
 
-			netFile= Pref.getString("username","");
-			password=Pref.getString("password","1111111" );
+						
 			lv.invalidateViews();   
 			adapter.notifyDataSetChanged();     
 		}
@@ -462,7 +367,7 @@ public class MainActivity extends Activity {
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
 		//adapter.setListindex(info.position);
 		int itemId = item.getItemId();
-		 if (itemId == R.id.buynotbuy) {
+		if (itemId == R.id.buynotbuy) {
 			int pos=info.position;
 			if ((mVectorClient.get(pos).getmFlag().equals("0"))|(mVectorClient.get(pos).getmFlag().equals("2"))) {
 				mVectorClient.get(pos).setmFlag("1");
@@ -502,15 +407,15 @@ public class MainActivity extends Activity {
 			adapter.notifyDataSetChanged();
 			}
 		} 
-		 else if (itemId == R.id.lane) {
-			
-				Intent intent1 = new Intent(MainActivity.this,Lane.class);
-				startActivityForResult(intent1, 5);
-			}    
-			
+		else if (itemId == R.id.lane) {
 
-			
-		
+			Intent intent1 = new Intent(MainActivity.this,Lane.class);
+			startActivityForResult(intent1, 5);
+		}    
+
+
+
+
 		return super.onOptionsItemSelected(item);
 
 	}
@@ -519,43 +424,16 @@ public class MainActivity extends Activity {
 
 
 		SharedPreferences.Editor editor =Pref.edit();
-		editor.putString("sqlDate",sqlDate);
-		editor.putString("sqlDate2",sqlDate2);
-		editor.putString("changeDate",changeDate);
-		editor.putString("username",netFile);
+//		editor.putString("sqlDate",sqlDate);
+//		editor.putString("sqlDate2",sqlDate2);
+//		editor.putString("changeDate",changeDate);
+//		editor.putString("username",netFile);
 		editor.commit();		
 		super.onStop();
 	}
 	public void onBackPressed(){
 
-		if (equipmentFlag)  {
-			equipmentFlag=false;
-			lv.setAdapter(adapter);
-			registerForContextMenu(lv);
-
-			lv.setTextFilterEnabled(true);
-
-
-			lv.setOnItemClickListener(new OnItemClickListener() {
-				public void onItemClick(AdapterView<?> parent, View myview,
-						int position, long viewid) {
-
-
-					SingelClient.getinstance().setmMahut(adapter.getmMahut(position));
-
-					SingelClient.getinstance().setmStreet(adapter.getmStreet(position));
-					SingelClient.getinstance().setmPhone(adapter.getmPhone(position));
-					SingelClient.getinstance().setmName(adapter.getmName(position));
-					SingelClient.getinstance().setmAccessories(adapter.getmAccessories(position));
-					Intent myIntent= new Intent(MainActivity.this,client.class);
-					startActivity(myIntent);
-
-				}
-			});
-
-		}//if
-		else {
-
+		
 			cursor =null;
 			lane =null;
 			adapter=null;
@@ -565,7 +443,7 @@ public class MainActivity extends Activity {
 			mDb.close();
 			System.gc();
 			finish();
-		}
+		
 
 	}//onback
 }//class

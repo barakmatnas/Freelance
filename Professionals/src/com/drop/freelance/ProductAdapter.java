@@ -93,7 +93,7 @@ public class ProductAdapter extends BaseAdapter {
 
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View rowView;
-		flagDisplay=SingelClient.getinstance().getmDisplayType();
+		//flagDisplay=SingelClient.getinstance().getmDisplayType();
 		if (fontSize !=SingelClient.getinstance().getmFont()){
 			fontSize =SingelClient.getinstance().getmFont();
 
@@ -128,17 +128,12 @@ public class ProductAdapter extends BaseAdapter {
 		}
 		else imageView.setImageResource(R.drawable.barcode);
 
-		if (flagDisplay == 1 ) {
+		
 
 			textView1.setText(mVectorProduct.get(position).getmName());
 			textView2.setText(mVectorProduct.get(position).getmMahut());
 
-		}
-		else{
-
-			textView1.setText(mVectorProduct.get(position).getmName());
-			textView2.setText(mVectorProduct.get(position).getmStreet());   
-		}
+		
 		textView1.setWidth(140);
 
 

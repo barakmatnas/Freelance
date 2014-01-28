@@ -10,14 +10,14 @@
         android:id="@+id/flag"
         android:layout_width="26dip"
         android:layout_height="28dip"
-        android:layout_weight="13.94"
+        android:layout_weight="12"
         android:paddingTop="1dp" />
 
     <TextView
         android:id="@+id/name"
         android:layout_width="190dip"
         android:layout_height="28dp"
-        android:layout_weight="40"
+        android:layout_weight="45"
         android:gravity="left"
         android:textColor="#0099CC"
         android:textSize="15sp"
@@ -28,6 +28,7 @@
         android:layout_width="100dp"
         android:layout_height="28dp"
         android:gravity="left"
+        android:layout_weight="30"
         android:paddingLeft="1dp"
         android:textSize="15sp"
         android:textStyle="bold" />

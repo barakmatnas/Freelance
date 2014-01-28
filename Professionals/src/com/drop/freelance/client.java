@@ -10,37 +10,31 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class client extends Activity{
 
 	ProductAdapter adapter;
+	private String[] accessories;
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.client);
-		Button button =(Button) findViewById(R.id.button3);
-    	EditText edit2 = (EditText) findViewById(R.id.editText1);
-		EditText edit = (EditText) findViewById(R.id.editText2);
+		//Button button =(Button) findViewById(R.id.button4);
+    	EditText eAdress = (EditText) findViewById(R.id.editText1);
+		EditText eName = (EditText) findViewById(R.id.editText2);
 		EditText edit3 = (EditText) findViewById(R.id.editText3);
 		EditText edit4 = (EditText) findViewById(R.id.editText4);
 		EditText edit5 = (EditText) findViewById(R.id.editText5);
-	    
+		EditText edit6 = (EditText) findViewById(R.id.editText6);
 
-		edit.setText( SingelClient.getinstance().getmName());
-		edit2.setText(SingelClient.getinstance().getmMahut());
+		eName.setText( SingelClient.getinstance().getmName());
+		eAdress.setText(SingelClient.getinstance().getmStreet());
 		edit3.setText(SingelClient.getinstance().getmPhone());
-		edit4.setText( SingelClient.getinstance().getmStreet());
-		if (!SingelClient.getinstance().getmAccessories()[0].equals("no"))
-		{edit5.setText(SingelClient.getinstance().getmAccessories()[0]);
-		
-		}
-		else 
-		{edit5.setText("No equipment needed");
-		
-		}
-		if (!SingelClient.getinstance().getmAccessories()[1].equals("no"))button.setVisibility(View.VISIBLE);
-		else button.setVisibility(View.GONE);
-	//Toast.makeText(this,SingelClient.getinstance().getmCity(),Toast.LENGTH_LONG).show();
+		accessories=SingelClient.getinstance().getmAccessories();
+		edit4.setText(accessories[0]);
+		edit5.setText(accessories[2]);
+		edit6.setText( SingelClient.getinstance().getmMahut());
 	}
 
 	public void waze(View v) {
@@ -79,7 +73,24 @@ public class client extends Activity{
 		setResult(Activity.RESULT_OK, myIntent);
 		//
 		finish();
-	}public void phone(View v) {
+	}
+	
+public void esend(View v) {
+		
+	Intent i = new Intent(Intent.ACTION_SEND);
+	i.setType("message/rfc822");
+	i.putExtra(Intent.EXTRA_EMAIL  , new String[]{accessories[1]});
+	i.putExtra(Intent.EXTRA_SUBJECT, "הפנייה מאפליקציית פרילנסר");
+	i.putExtra(Intent.EXTRA_TEXT   , "");
+	try {
+	    startActivity(Intent.createChooser(i, "Send mail..."));
+	} catch (android.content.ActivityNotFoundException ex) {
+	    Toast.makeText(client.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+	}
+	}
+	
+	
+	public void phone(View v) {
 		
 		String tel = "tel:" + SingelClient.getinstance().getmPhone() ;
 		  Intent intent = null;
