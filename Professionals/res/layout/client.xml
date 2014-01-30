@@ -5,16 +5,15 @@
 
     <EditText
         android:id="@+id/editText1"
-        android:inputType="text"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/editText2"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="11dp"
         android:background="@drawable/backt"
         android:ems="10"
         android:enabled="false"
+        android:inputType="text"
         android:textColor="@android:color/black"
         android:textStyle="bold" />
 
@@ -24,12 +23,12 @@
         android:layout_height="30dp"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/editText3"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="11dp"
         android:background="@drawable/backt"
         android:ems="10"
         android:enabled="false"
         android:inputType="text"
+        android:onClick="esend"
         android:textColor="@android:color/black"
         android:textStyle="bold" />
 
@@ -39,8 +38,7 @@
         android:layout_height="60dp"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/editText4"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="11dp"
         android:background="@drawable/backt"
         android:ems="10"
         android:enabled="false"
@@ -54,67 +52,36 @@
         android:layout_height="30dp"
         android:layout_alignLeft="@+id/editText4"
         android:layout_below="@+id/editText1"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="11dp"
         android:background="@drawable/backt"
         android:ems="10"
         android:enabled="false"
         android:gravity="right"
         android:inputType="phone"
         android:textColor="@android:color/black"
+        android:onClick="phone"
         android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="80dp"
-        android:layout_height="44dp"
-        android:layout_alignBaseline="@+id/editText4"
-        android:layout_alignBottom="@+id/editText4"
-        android:layout_alignParentLeft="true"
-        android:background="@drawable/imgres"
-        android:onClick="waze" />
-
     <EditText
-        android:inputType="text"
         android:id="@+id/editText2"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:layout_alignLeft="@+id/editText1"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="14dp"
         android:background="@drawable/backt"
         android:ems="10"
         android:enabled="false"
+        android:inputType="text"
         android:textColor="@android:color/black"
         android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/editText4"
-        android:layout_alignParentLeft="true"
-        android:layout_alignRight="@+id/button2"
-        android:background="@drawable/call"
-        android:onClick="phone" />
-
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="130dp"
-        android:layout_height="65dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/editText5"
-        android:layout_marginRight="41dp"
-        android:background="@drawable/back"
-        android:onClick="back"
-        android:text="@string/back" />
-
+   
     <EditText
         android:id="@+id/editText6"
         android:layout_width="wrap_content"
         android:layout_height="90dp"
-        android:layout_alignLeft="@+id/editText5"
         android:layout_below="@+id/editText5"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="11dp"
         android:background="@drawable/backt"
         android:ems="10"
         android:enabled="false"
@@ -123,12 +90,26 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/button2"
-        android:layout_centerVertical="true"
-        android:onClick="esend"
-        android:text="Email ME" />
+        android:id="@+id/button2"
+        android:layout_width="80dp"
+        android:layout_height="44dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="26dp"
+        android:layout_marginLeft="39dp"
+        android:background="@drawable/imgres"
+        android:onClick="waze" />
 
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="130dp"
+        android:layout_height="65dp"
+        android:layout_alignBaseline="@+id/button2"
+        android:layout_alignBottom="@+id/button2"
+        android:layout_alignRight="@+id/editText5"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/back"
+        android:onClick="back"
+        android:text="@string/back" />
+   
 </RelativeLayout>

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:background="#000000"
+    android:layout_height="40dp"
+   android:background="@drawable/backt"
+    android:scaleType="fitXY"
     android:orientation="horizontal" >
 
     <ImageView
@@ -15,13 +16,19 @@
 
     <TextView
         android:id="@+id/name"
-        android:layout_width="190dip"
-        android:layout_height="28dp"
-        android:layout_weight="45"
+        android:layout_width="136dp"
+        android:layout_height="38dp"
         android:gravity="left"
-        android:textColor="#0099CC"
+        android:textColor="@android:color/black"
         android:textSize="15sp"
         android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="133dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textMultiLine" />
 
     <TextView
         android:id="@+id/mahut"
@@ -31,6 +38,7 @@
         android:layout_weight="30"
         android:paddingLeft="1dp"
         android:textSize="15sp"
-        android:textStyle="bold" />
+        android:textStyle="bold" 
+         android:inputType="textMultiLine"/>
 
 </LinearLayout>

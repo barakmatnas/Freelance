@@ -12,17 +12,7 @@
      <item>36</item>
    </string-array>
    
-   <string-array name="displayOptions">
-     
-     <item>name and Adress</item>
-     <item>name and kind</item>
-     </string-array>
- 
-   <string-array name="displayValues">
-     <item>2</item>
-     <item>1</item>
-    
-   </string-array>
+   
    
    
    

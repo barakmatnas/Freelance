@@ -44,6 +44,7 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.SimpleCursorAdapter.CursorToStringConverter;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
@@ -122,7 +123,7 @@ public class MainActivity extends Activity {
 		if (cursor.getCount()<1) {  new ShowDialogAsyncTask(this).execute();}
 		else { sqlWay(cursor);}
 
-		
+
 	}////////////////////////////////////////								/////////////ON     CREATE END//////////////////////////////
 
 
@@ -131,25 +132,22 @@ public class MainActivity extends Activity {
 			cursor=cur;
 			cursor.moveToFirst();
 			mVectorClient.clear();
-
+			int row=cursor.getCount();
+			row--;
 			for (int i = 0; i < cursor.getCount() ; i++) {
-				String zmani=cursor.getString(0);
-				lane.add(zmani);
-					
-
-					Product Product = new Product();
-					Product.setmName(cursor.getString(1));
-					Product.setmMahut(cursor.getString(2));
-					Product.setmPhone(cursor.getString(3));
-					Product.setmStreet(cursor.getString(4));
-					Product.setmFlag(cursor.getString(5));
-					for (int j=6;j<12;j++){
-						System.out.print("setmAccessories");
+				System.out.print(i);
+				Product Product = new Product();
+				Product.setmName(cursor.getString(1));
+				Product.setmMahut(cursor.getString(2));
+				Product.setmPhone(cursor.getString(3));
+				Product.setmStreet(cursor.getString(4));
+				Product.setmFlag(cursor.getString(5));
+				for (int j=6;j<12;j++){
 						Product.setmAccessories(cursor.getString(j));
 					
-					mVectorClient.add(Product);
-					cursor.moveToNext();
-				} //if date
+				} //if for j
+				mVectorClient.add(Product);
+				if (i<row) cursor.moveToNext();
 			}  // for i
 
 			if (mVectorClient.size()<1) { 	new ShowDialogAsyncTask(this).execute();}
@@ -234,7 +232,7 @@ public class MainActivity extends Activity {
 				StringTokenizer tokens;
 
 				String sCurrentLine  ;
-			
+
 
 
 				while ((sCurrentLine = reader.readLine()) != null) {
@@ -242,34 +240,36 @@ public class MainActivity extends Activity {
 					tokens = new StringTokenizer(sCurrentLine, ",");
 					//String mDate =tokens.nextToken();
 					//mLane.add(today);
-						Product product = new Product();
-						product.setmDate(tokens.nextToken());
-						product.setmName(tokens.nextToken());
-						product.setmMahut(tokens.nextToken());
-						product.setmPhone(tokens.nextToken());
-						product.setmStreet(tokens.nextToken());
-						if (tokens.nextToken().equals("no")){
-							product.setmFlag("0");
-						}
-						else product.setmFlag("2");
-						for (int mone=0 ;mone < 6; mone++ ){
-							String s;
-							s =	tokens.nextToken();
-							product.setmAccessories(s);
-							if (!s.equals("no")) mVectorEquipment.add(s) ;//separate vector that for the use of equipment adapter
-
-						}
-						mDb.execSQL("INSERT INTO CLIENTS VALUES ('" + product.getmDate() + "','" + product.getmName()
-								+ "','" + product.getmMahut() +"','" + product.getmPhone() +"','" + product.getmStreet() 
-								+"','" + product.getmFlag() +"','" +product.getmAccessories(0) +"','" + product.getmAccessories(1) +
-								"','" + product.getmAccessories(2)+"','" + 
-								product.getmAccessories(3)+"','" + product.getmAccessories(4)+"','" + product.getmAccessories(5)+ "')"); 	
-
-
-
-						mVectorClient.add(product);
+					Product product = new Product();
+					product.setmDate(tokens.nextToken());
+					product.setmName(tokens.nextToken());
+					product.setmMahut(tokens.nextToken());
+					product.setmPhone(tokens.nextToken());
+					product.setmStreet(tokens.nextToken());
+					if (tokens.nextToken().equals("no")){
+						product.setmFlag("0");
+					}
+					else product.setmFlag("2");
+					for (int mone=0 ;mone < 6; mone++ ){
+						String s;
+						s =	tokens.nextToken();
+						product.setmAccessories(s);
+						if (!s.equals("no")) mVectorEquipment.add(s) ;//separate vector that for the use of equipment adapter
 
 					}
+					int g=0;g++;
+					
+					mDb.execSQL("INSERT INTO CLIENTS VALUES ('" + product.getmDate() + "','" + product.getmName()
+							+ "','" + product.getmMahut() +"','" + product.getmPhone() +"','" + product.getmStreet() 
+							+"','" + product.getmFlag() +"','" +product.getmAccessories(0) +"','" + product.getmAccessories(1) +
+							"','" + product.getmAccessories(2)+"','" + 
+							product.getmAccessories(3)+"','" + product.getmAccessories(4)+"','" + product.getmAccessories(5)+ "')"); 	
+
+
+
+					mVectorClient.add(product);
+
+				}
 
 			} 
 			catch (UnknownHostException e) {
@@ -328,7 +328,7 @@ public class MainActivity extends Activity {
 		super.onActivityResult(requestCode, resultCode, data);
 
 		if   (resultCode==Activity.RESULT_OK && requestCode==5){
-		
+
 			new ShowDialogAsyncTask(this).execute();
 			adapter.notifyDataSetChanged();
 		}
@@ -341,7 +341,7 @@ public class MainActivity extends Activity {
 			SingelClient.getinstance().setmDisplayType(Integer.parseInt(displayType));
 			SingelClient.getinstance().setmFont(Integer.parseInt(font));
 
-						
+
 			lv.invalidateViews();   
 			adapter.notifyDataSetChanged();     
 		}
@@ -424,26 +424,26 @@ public class MainActivity extends Activity {
 
 
 		SharedPreferences.Editor editor =Pref.edit();
-//		editor.putString("sqlDate",sqlDate);
-//		editor.putString("sqlDate2",sqlDate2);
-//		editor.putString("changeDate",changeDate);
-//		editor.putString("username",netFile);
+		//		editor.putString("sqlDate",sqlDate);
+		//		editor.putString("sqlDate2",sqlDate2);
+		//		editor.putString("changeDate",changeDate);
+		//		editor.putString("username",netFile);
 		editor.commit();		
 		super.onStop();
 	}
 	public void onBackPressed(){
 
-		
-			cursor =null;
-			lane =null;
-			adapter=null;
-			mDb.close();
-			mVectorClient=null;
-			mVectorEquipment=null;
-			mDb.close();
-			System.gc();
-			finish();
-		
+
+		cursor =null;
+		lane =null;
+		adapter=null;
+		mDb.close();
+		mVectorClient=null;
+		mVectorEquipment=null;
+		mDb.close();
+		System.gc();
+		finish();
+
 
 	}//onback
 }//class
