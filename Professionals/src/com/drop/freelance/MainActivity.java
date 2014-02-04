@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.UnknownHostException;
-import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.StringTokenizer;
@@ -44,7 +43,6 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter.CursorToStringConverter;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
@@ -85,7 +83,6 @@ public class MainActivity extends Activity {
 					int count) {
 
 				fillFilteredData(s);
-
 			}
 
 			@Override
@@ -101,25 +98,14 @@ public class MainActivity extends Activity {
 		});
 
 		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-
-
-
-
 		Pref= PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-
 		String font=Pref.getString("fontkey","20");
 		SingelClient.getinstance().setmFont(Integer.parseInt(font));
-
-		String locale = java.util.Locale.getDefault().getDisplayName();		
 		netFile="https://dl.dropboxusercontent.com/s/1bgklxjn25borom/client.txt?dl=1&token_hash=AAGxCS7TfRqiHB0pE-CdAjKczXBsqYkj6ancA3-L9CKj1g";
-
-
 		helper = new ProductOpenHelper(getApplicationContext());
 		if (!isOnline())  Toast.makeText(getApplicationContext(), NO_INTERNET_RECEPTION,Toast.LENGTH_LONG).show();
-
 		mDb = helper.getWritableDatabase();
 		cursor = mDb.rawQuery("SELECT * FROM CLIENTS;", null);
-
 		if (cursor.getCount()<1) {  new ShowDialogAsyncTask(this).execute();}
 		else { sqlWay(cursor);}
 
@@ -150,8 +136,7 @@ public class MainActivity extends Activity {
 				if (i<row) cursor.moveToNext();
 			}  // for i
 
-			if (mVectorClient.size()<1) { 	new ShowDialogAsyncTask(this).execute();}
-			else{
+			
 				adapter = new ProductAdapter(getApplicationContext());
 				adapter.setVector(mVectorClient); //take the vector to the adapter
 				lv = (ListView)findViewById(android.R.id.list);
@@ -174,7 +159,7 @@ public class MainActivity extends Activity {
 				});//nItemClickListener()
 
 				adapter.notifyDataSetChanged();
-			}					
+								
 		}//if (cur==null)
 
 	}//sqlway//////////////////////////////  SQLWAY END  //////////////////
@@ -182,7 +167,8 @@ public class MainActivity extends Activity {
 
 
 	private void fillFilteredData(CharSequence s) {				// deals filtering rows using the editText on the top of the screen
-		Cursor mCursor = mDb.rawQuery("SELECT * FROM CLIENTS WHERE name LIKE '%" + s + "%';", null);
+		
+		Cursor mCursor = mDb.rawQuery("SELECT * FROM CLIENTS WHERE mahut LIKE '%" + s + "%';", null);
 		if (mCursor != null) {
 			mCursor.moveToFirst();
 		}
@@ -230,7 +216,6 @@ public class MainActivity extends Activity {
 				InputStreamReader in = new InputStreamReader(entity.getContent(),"UCS-2");
 				BufferedReader reader = new BufferedReader(in);
 				StringTokenizer tokens;
-
 				String sCurrentLine  ;
 
 
@@ -238,8 +223,7 @@ public class MainActivity extends Activity {
 				while ((sCurrentLine = reader.readLine()) != null) {
 					sCurrentLine = sCurrentLine.trim().replace('"',' ');
 					tokens = new StringTokenizer(sCurrentLine, ",");
-					//String mDate =tokens.nextToken();
-					//mLane.add(today);
+					
 					Product product = new Product();
 					product.setmDate(tokens.nextToken());
 					product.setmName(tokens.nextToken());
@@ -257,8 +241,7 @@ public class MainActivity extends Activity {
 						if (!s.equals("no")) mVectorEquipment.add(s) ;//separate vector that for the use of equipment adapter
 
 					}
-					int g=0;g++;
-					
+
 					mDb.execSQL("INSERT INTO CLIENTS VALUES ('" + product.getmDate() + "','" + product.getmName()
 							+ "','" + product.getmMahut() +"','" + product.getmPhone() +"','" + product.getmStreet() 
 							+"','" + product.getmFlag() +"','" +product.getmAccessories(0) +"','" + product.getmAccessories(1) +
@@ -369,8 +352,8 @@ public class MainActivity extends Activity {
 		int itemId = item.getItemId();
 		if (itemId == R.id.buynotbuy) {
 			int pos=info.position;
-			if ((mVectorClient.get(pos).getmFlag().equals("0"))|(mVectorClient.get(pos).getmFlag().equals("2"))) {
-				mVectorClient.get(pos).setmFlag("1");
+			if ((mVectorClient.get(pos).getmFlag().equals("0"))){
+				mVectorClient.get(pos).setmFlag("2");
 				mDb.execSQL("UPDATE CLIENTS SET flag='1' WHERE NAME=" + "'"+ mVectorClient.get(pos).getmName() + "';");
 			} else {
 				mVectorClient.get(pos).setmFlag("0");
@@ -393,8 +376,7 @@ public class MainActivity extends Activity {
 
 
 	public boolean onOptionsItemSelected(MenuItem item) {
-		int it = R.id.defsettings;
-		int it1 = R.id.lane;
+		
 		int itemId = item.getItemId();
 		if (itemId == R.id.defsettings) {
 			Intent intent = new Intent(MainActivity.this,
@@ -424,11 +406,8 @@ public class MainActivity extends Activity {
 
 
 		SharedPreferences.Editor editor =Pref.edit();
-		//		editor.putString("sqlDate",sqlDate);
-		//		editor.putString("sqlDate2",sqlDate2);
-		//		editor.putString("changeDate",changeDate);
-		//		editor.putString("username",netFile);
-		editor.commit();		
+		editor.commit();
+		//mDb.close();
 		super.onStop();
 	}
 	public void onBackPressed(){
@@ -437,7 +416,7 @@ public class MainActivity extends Activity {
 		cursor =null;
 		lane =null;
 		adapter=null;
-		mDb.close();
+		
 		mVectorClient=null;
 		mVectorEquipment=null;
 		mDb.close();

@@ -20,6 +20,7 @@
         android1:layout_alignParentTop="true"
         android1:layout_centerHorizontal="true"
         android1:layout_marginTop="21dp"
+                android:gravity="center"
         android1:text="באפשרותך לשלוח לי מייל עם הפרטים הבאים:שם פרטי ומשפחה,טלפון,תמונת פספורט 128*128,הידע המקצועי כולל כל שפות התכנות והידע המקצועי שלך ,קישור לפרופיל הלינקדין שלך ומחיר נדרש לשעת עבודה...עלי כמפתח האפליקציה לציין כי השימוש באפליקציה כרגע חופשי לגמרי ואין אני מתחייב לפרסם כל פנייה,אין אני אחראי לאיכות בעלי המקצוע או לכל נזק שעלול להיגרם עקב כך  "
         android1:textAppearance="?android:attr/textAppearanceLarge" />
 

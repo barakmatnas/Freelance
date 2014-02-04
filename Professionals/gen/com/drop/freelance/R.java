@@ -32,18 +32,20 @@ public final class R {
         public static final int plus=0x7f02000e;
         public static final int settings=0x7f02000f;
         public static final int smallequip=0x7f020010;
-        public static final int sym_keyboard_feedback_ok=0x7f020011;
-        public static final int v=0x7f020012;
-        public static final int x=0x7f020013;
+        public static final int splash=0x7f020011;
+        public static final int sym_keyboard_feedback_ok=0x7f020012;
+        public static final int v=0x7f020013;
+        public static final int x=0x7f020014;
     }
     public static final class id {
         public static final int android_search_box=0x7f080008;
         public static final int b1=0x7f080007;
         public static final int button1=0x7f080013;
         public static final int button2=0x7f080012;
-        public static final int buynotbuy=0x7f080019;
-        public static final int call=0x7f080018;
-        public static final int defsettings=0x7f08001b;
+        public static final int buynotbuy=0x7f08001b;
+        public static final int call=0x7f08001a;
+        public static final int checkBox1=0x7f080018;
+        public static final int defsettings=0x7f08001d;
         public static final int e1=0x7f080000;
         public static final int e2=0x7f080001;
         public static final int e3=0x7f080002;
@@ -59,13 +61,14 @@ public final class R {
         public static final int editText6=0x7f080011;
         public static final int equip1=0x7f080014;
         public static final int flag=0x7f080009;
-        public static final int ic_loadlist=0x7f08001a;
-        public static final int lane=0x7f08001c;
+        public static final int ic_loadlist=0x7f08001c;
+        public static final int lane=0x7f08001e;
         public static final int mahut=0x7f08000a;
-        public static final int menu_settings=0x7f080017;
+        public static final int menu_settings=0x7f080019;
         public static final int name=0x7f08000b;
         public static final int textView1=0x7f080016;
         public static final int textView2=0x7f080015;
+        public static final int textView3=0x7f080017;
     }
     public static final class layout {
         public static final int acc=0x7f030000;
@@ -77,6 +80,7 @@ public final class R {
         public static final int lane=0x7f030006;
         public static final int linearlayout=0x7f030007;
         public static final int linearone=0x7f030008;
+        public static final int splash=0x7f030009;
     }
     public static final class menu {
         public static final int activity_main=0x7f070000;

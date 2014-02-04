@@ -3,7 +3,7 @@
     android:layout_height="fill_parent"
     android:background="@drawable/drops" >
 
-    <EditText
+    <TextView
         android:id="@+id/editText1"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
@@ -13,11 +13,12 @@
         android:background="@drawable/backt"
         android:ems="10"
         android:enabled="false"
-        android:inputType="text"
+        android:gravity="center"
+        android:text="Medium Text"
         android:textColor="@android:color/black"
         android:textStyle="bold" />
 
-    <EditText
+    <TextView
         android:id="@+id/editText4"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
@@ -26,13 +27,13 @@
         android:layout_marginTop="11dp"
         android:background="@drawable/backt"
         android:ems="10"
-        android:enabled="false"
-        android:inputType="text"
+        android:gravity="center"
+        android:text="Medium Text"
         android:onClick="esend"
         android:textColor="@android:color/black"
         android:textStyle="bold" />
 
-    <EditText
+    <TextView
         android:id="@+id/editText5"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
@@ -40,13 +41,14 @@
         android:layout_below="@+id/editText4"
         android:layout_marginTop="11dp"
         android:background="@drawable/backt"
+         android:onClick="elink"
         android:ems="10"
-        android:enabled="false"
-        android:inputType="textMultiLine"
+   android:gravity="center"
+        android:text="Medium Text"
         android:textColor="@android:color/black"
         android:textStyle="bold" />
 
-    <EditText
+    <TextView
         android:id="@+id/editText3"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
@@ -55,14 +57,14 @@
         android:layout_marginTop="11dp"
         android:background="@drawable/backt"
         android:ems="10"
-        android:enabled="false"
-        android:gravity="right"
-        android:inputType="phone"
+        
+        android:gravity="center"
+       android:text="Medium Text"
         android:textColor="@android:color/black"
         android:onClick="phone"
         android:textStyle="bold" />
 
-    <EditText
+    <TextView
         android:id="@+id/editText2"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
@@ -70,13 +72,14 @@
         android:layout_marginTop="14dp"
         android:background="@drawable/backt"
         android:ems="10"
+        android:gravity="center"
         android:enabled="false"
-        android:inputType="text"
+       android:text="Medium Text"
         android:textColor="@android:color/black"
         android:textStyle="bold" />
 
    
-    <EditText
+    <TextView
         android:id="@+id/editText6"
         android:layout_width="wrap_content"
         android:layout_height="90dp"
@@ -85,7 +88,8 @@
         android:background="@drawable/backt"
         android:ems="10"
         android:enabled="false"
-        android:inputType="textMultiLine"
+        android:gravity="center"
+        android:text="Medium Text"
         android:textColor="@android:color/black"
         android:textStyle="bold" />
 

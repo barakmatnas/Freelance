@@ -7,9 +7,9 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class client extends Activity{
@@ -21,13 +21,15 @@ public class client extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.client);
 		//Button button =(Button) findViewById(R.id.button4);
-    	EditText eAdress = (EditText) findViewById(R.id.editText1);
-		EditText eName = (EditText) findViewById(R.id.editText2);
-		EditText edit3 = (EditText) findViewById(R.id.editText3);
-		EditText edit4 = (EditText) findViewById(R.id.editText4);
-		EditText edit5 = (EditText) findViewById(R.id.editText5);
-		EditText edit6 = (EditText) findViewById(R.id.editText6);
-
+		TextView eAdress = (TextView) findViewById(R.id.editText1);
+		TextView eName = (TextView) findViewById(R.id.editText2);
+		TextView edit3 = (TextView) findViewById(R.id.editText3);
+		TextView edit4 = (TextView) findViewById(R.id.editText4);
+		TextView edit5 = (TextView) findViewById(R.id.editText5);
+		TextView edit6 = (TextView) findViewById(R.id.editText6);
+		edit4.setMovementMethod(LinkMovementMethod.getInstance());
+		edit5.setMovementMethod(LinkMovementMethod.getInstance());
+		edit3.setMovementMethod(LinkMovementMethod.getInstance());
 		eName.setText( SingelClient.getinstance().getmName());
 		eAdress.setText(SingelClient.getinstance().getmStreet());
 		edit3.setText(SingelClient.getinstance().getmPhone());
@@ -58,14 +60,7 @@ public class client extends Activity{
         
 
 	}
-        public void acc(View v) {
-		
-		
-	
-    	Intent myIntent= new Intent(this,acc.class);
-	    startActivityForResult(myIntent, 1);
-		finish();
-	}
+        
 	
 	public void back(View v) {
 		
@@ -76,22 +71,35 @@ public class client extends Activity{
 	}
 	
 public void esend(View v) {
-		
+	if (!accessories[0].equals("no")){
 	Intent i = new Intent(Intent.ACTION_SEND);
 	i.setType("message/rfc822");
-	i.putExtra(Intent.EXTRA_EMAIL  , new String[]{accessories[1]});
+	i.putExtra(Intent.EXTRA_EMAIL  , new String[]{accessories[0]});
 	i.putExtra(Intent.EXTRA_SUBJECT, "הפנייה מאפליקציית פרילנסר");
 	i.putExtra(Intent.EXTRA_TEXT   , "");
 	try {
 	    startActivity(Intent.createChooser(i, "Send mail..."));
 	} catch (android.content.ActivityNotFoundException ex) {
 	    Toast.makeText(client.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
-	}
+	}}
 	}
 	
+public void elink(View v) {
 	
+	if (!accessories[2].equals("no")){
+	Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(accessories[2]));
+	try {
+		startActivity(browserIntent);
+	} catch (android.content.ActivityNotFoundException ex) {
+	    Toast.makeText(client.this, "מצטער ארעה תקלה", Toast.LENGTH_SHORT).show();
+	}
+	
+	}
+}
+
+
 	public void phone(View v) {
-		
+		if (!SingelClient.getinstance().getmPhone().equals("no")){
 		String tel = "tel:" + SingelClient.getinstance().getmPhone() ;
 		  Intent intent = null;
 		  intent = new Intent(Intent.ACTION_DIAL,Uri.parse(tel));
@@ -99,6 +107,6 @@ public void esend(View v) {
          
          
 		finish();
-	}
+	}}
 }
 
